@@ -1,14 +1,14 @@
 #include <ctype.h>
 #include <curses.h>
 
-int height;			/* Height of screen in lines. */
+int height;				/* Height of screen in lines. */
 
-char buffer[BUF];	/* Main buffer. */
+char buffer[BUF];		/* Main buffer. */
+char *bufptr = buffer;	/* Buffer location pointer. */
 
 int i, j, m, n, p, q, x, y;
 
 char k[] = "hjklHJKL[]tbixWRQ";
-char *g = buffer;
 char *c, *f, *h, *t;
 
 char *
@@ -16,13 +16,13 @@ Z(int a)
 {
 	if (a < 0)
 		return buffer;
-	return buffer + a + (buffer + a < g ? 0 : h - g);
+	return buffer + a + (buffer + a < bufptr ? 0 : h - bufptr);
 }
 
 int
 P(char *a)
 {
-	return a - buffer - (a < h ? 0 : h - g);
+	return a - buffer - (a < h ? 0 : h - bufptr);
 }
 
 int
@@ -54,10 +54,10 @@ int
 G()
 {
 	t = Z(p);
-	while (t < g)
-		*--h = *--g;
+	while (t < bufptr)
+		*--h = *--bufptr;
 	while (h < t)
-		*g++ = *h++;
+		*bufptr++ = *h++;
 	p = P(h);
 }
 
@@ -157,9 +157,9 @@ I()
 	G();
 	while ((j = getch()) - '\f') {
 		if (j - '\b')
-			g - h && (*g++ = j - '\r' ? j : '\n');
+			bufptr - h && (*bufptr++ = j - '\r' ? j : '\n');
 		else
-			buffer < g && --g;
+			buffer < bufptr && --bufptr;
 		p = P(h);
 		Y();
 	}
@@ -241,8 +241,8 @@ main(int argc, char **argv)
 	idlok(stdscr, 1);
 
 	if ((i = open(f = *++argv, 0)) > 0) {
-		if ((g += read(i, buffer, BUF)) <= 0)
-			g = buffer;
+		if ((bufptr += read(i, buffer, BUF)) <= 0)
+			bufptr = buffer;
 		
 		close(i);
 	}
