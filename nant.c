@@ -7,25 +7,41 @@ char k[] = "hjklHJKL[]tbixWRQ";
 char b[BUF], *g = b;
 char *c, *f, *h, *t;
 
-char* Z(a)
+char *
+Z(a)
 {
 	if (a < 0)
 		return b;
 	return b + a + (b + a < g ? 0 : h - g);
 }
+
 P(a)
 char* a;
 {
 	return a - b - (a < h ? 0 : h - g);
 }
-S() { p = 0; }
-bf() { n = p = P(c); }
-Q() { q = 1; }
+
+S()
+{
+	p = 0;
+}
+
+bf()
+{
+	n = p = P(c);
+}
+
+Q()
+{
+	q = 1;
+}
+
 C()
 {
 	clear();
 	Y();
 }
+
 G()
 {
 	t = Z(p);
@@ -35,6 +51,7 @@ G()
 		*g++ = *h++;
 	p = P(h);
 }
+
 B()
 {
 	while (!isspace(*(t = Z(p))) && b < t)
@@ -42,18 +59,21 @@ B()
 	while (isspace(*(t = Z(p))) && b < t)
 		--p;
 }
+
 M(a)
 {
 	while (b < (t = Z(--a)) && *t - '\n')
 		;
 	return b < t ? ++a : 0;
 }
+
 N(a)
 {
 	while ((t = Z(a++)) < c && *t - '\n')
 		;
 	return t < c ? a : P(c);
 }
+
 A(a, j)
 {
 	i = 0;
@@ -63,16 +83,38 @@ A(a, j)
 	}
 	return a;
 }
-L() { 0 < p && --p; }
-R() { p < P(c) && ++p; }
-U() { p = A(M(M(p) - 1), x); }
-D() { p = A(N(p), x); }
-H() { p = M(p); }
+
+L()
+{
+	0 < p && --p;
+}
+
+R()
+{
+	p < P(c) && ++p;
+}
+
+U()
+{
+	p = A(M(M(p) - 1), x);
+}
+
+D()
+{
+	p = A(N(p), x);
+}
+
+H()
+{
+	p = M(p);
+}
+
 E()
 {
 	p = N(p);
 	L();
 }
+
 J()
 {
 	m = p = M(n - 1);
@@ -80,12 +122,14 @@ J()
 		D();
 	n = P(c);
 }
+
 K()
 {
 	j = d;
 	while (0 < --j)
 		m = M(m - 1), U();
 }
+
 I()
 {
 	G();
@@ -98,11 +142,13 @@ I()
 		Y();
 	}
 }
+
 X()
 {
 	G();
 	p = h < c ? P(++h) : p;
 }
+
 F()
 {
 	j = p;
@@ -112,6 +158,7 @@ F()
 	close(i);
 	p = j;
 }
+
 W()
 {
 	while (!isspace(*(t = Z(p))) && t < c)
@@ -119,7 +166,9 @@ W()
 	while (isspace(*(t = Z(p))) && t < c)
 		++p;
 }
+
 int (*z[])() = { L, D, U, R, B, J, K, W, H, E, S, bf, I, X, F, C, Q, G };
+
 Y()
 {
 	m = p < m ? M(p) : m;
@@ -148,7 +197,9 @@ Y()
 	move(y, x);
 	refresh();
 }
-main(u, v) char** v;
+
+main(u, v)
+char** v;
 {
 	h = c = b + BUF;
 	if (u < 2)
@@ -175,3 +226,4 @@ main(u, v) char** v;
 	endwin();
 	return 0;
 }
+
