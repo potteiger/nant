@@ -6,7 +6,9 @@ int height;				/* Height of screen in lines. */
 char buffer[BUF];		/* Main buffer. */
 char *bufptr = buffer;	/* Buffer location pointer. */
 
-int i, j, m, n, p, q, x, y;
+int fd;					/* File descriptor. */
+
+int j, m, n, p, q, x, y;
 
 char k[] = "hjklHJKL[]tbixWRQ";
 char *c, *f, *h, *t;
@@ -89,9 +91,9 @@ N(int a)
 int
 A(int a, int j)
 {
-	i = 0;
-	while ((t = Z(a)) < c && *t - '\n' && i < j) {
-		i += *t - '\t' ? 1 : 8 - (i & 7);
+	fd = 0;
+	while ((t = Z(a)) < c && *t - '\n' && fd < j) {
+		fd += *t - '\t' ? 1 : 8 - (fd & 7);
 		++a;
 	}
 	return a;
@@ -178,8 +180,8 @@ F()
 	j = p;
 	p = 0;
 	G();
-	write(i = creat(f, MODE), h, (int)(c - h));
-	close(i);
+	write(fd = creat(f, MODE), h, (int)(c - h));
+	close(fd);
 	p = j;
 }
 
@@ -200,26 +202,26 @@ Y()
 	m = p < m ? M(p) : m;
 	if (n <= p) {
 		m = N(p);
-		i = m - P(c) ? height : height - 2;
-		while (0 < i--)
+		fd = m - P(c) ? height : height - 2;
+		while (0 < fd--)
 			m = M(m - 1);
 	}
 	move(0, 0);
-	i = j = 0;
+	fd = j = 0;
 	n = m;
 	while (1) {
-		p - n || (y = i, x = j);
+		p - n || (y = fd, x = j);
 		t = Z(n);
-		if (height <= i || c <= t)
+		if (height <= fd || c <= t)
 			break;
 		if (*t - '\r')
 			addch(*t), j += *t - '\t' ? 1 : 8 - (j & 7);
 		if (*t == '\n' || COLS <= j)
-			++i, j = 0;
+			++fd, j = 0;
 		++n;
 	}
 	clrtobot();
-	++i < height && mvaddstr(i, 0, "<< EOF >>");
+	++fd < height && mvaddstr(fd, 0, "<< EOF >>");
 	move(y, x);
 	refresh();
 }
@@ -240,11 +242,11 @@ main(int argc, char **argv)
 	noecho();
 	idlok(stdscr, 1);
 
-	if ((i = open(f = *++argv, 0)) > 0) {
-		if ((bufptr += read(i, buffer, BUF)) <= 0)
+	if ((fd = open(f = *++argv, 0)) > 0) {
+		if ((bufptr += read(fd, buffer, BUF)) <= 0)
 			bufptr = buffer;
 		
-		close(i);
+		close(fd);
 	}
 
 	S();
@@ -252,13 +254,13 @@ main(int argc, char **argv)
 	while (!q) {
 		Y();
 
-		i = 0;
+		fd = 0;
 
 		j = getch();
-		while (k[i] && j - k[i])
-			++i;
+		while (k[fd] && j - k[fd])
+			++fd;
 		
-		(*z[i])();
+		(*z[fd])();
 	}
 
 	endwin();
