@@ -1,0 +1,54 @@
+Ant's Editor -- Non-obfuscated
+==============================
+
+Ant's editor (`ant`) was "Best Utility" Winner of the 1991 International
+Obfuscated C Code Contest (**IOCCC**).
+
+`ant` is a tiny vi-like curses editor with an original source clocking in at
+1478 bytes!
+
+I am a huge fan of the IOCCC. Going over the most interesting winners over the
+years is a big passtime for me. I get great enjoyment out of deobfuscating code
+and seeing how it works. A lot of times these programs are impressive even
+without the obfuscation. They're tiny but capable. And that's exactly what
+`ant` is.
+
+I believe "Ant" (Anthony C Howe) continued work on this editor after his IOCCC
+win and later published non-obfuscated and improved versions himself. However,
+I have not been able to find any copies of this source anywhere. Regardless,
+I'm here for fun and a learning opportunity.
+
+Sources
+=======
+
+ * `ant.c` is the original obfuscated source from the 1991 IOCCC. This will
+   remain untouched and is here for reference.
+ * `nant.c` is the non-obfuscated version I derived from `ant.c`.
+ * `Makefile` builds both versions for testing. Should build on all modern Unix
+ systems with `curses` library. Some Linux distributions may require `-lcurses`
+ to be changed to `-lncurses` to compile.
+
+```
+# Original
+make ant
+./ant [filename]
+# Non-obfuscated
+make nant
+./nant [filename]
+```
+
+Original Resources
+==================
+
+Original source, judges' comments, and notes from Ant himself are available in
+the official IOCCC repository under `1991/ant.c` and `1991/ant.hint`:
+
+<https://github.com/ioccc-src/winner>
+
+LICENSE
+=======
+
+Original sources, my non-obfuscated source and everything in this repository
+is released under the Creative Commons CC0 Public Domain Dedication. See
+`LICENSE` for details.
+
