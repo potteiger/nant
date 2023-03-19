@@ -6,12 +6,13 @@ int height;				/* Height of screen in lines. */
 char buffer[BUF];		/* Main buffer. */
 char *bufptr = buffer;	/* Buffer location pointer. */
 
+char *filename;			/* File name. */
 int fd;					/* File descriptor. */
 
 int j, m, n, p, q, x, y;
 
 char k[] = "hjklHJKL[]tbixWRQ";
-char *c, *f, *h, *t;
+char *c, *h, *t;
 
 char *
 Z(int a)
@@ -180,7 +181,7 @@ F()
 	j = p;
 	p = 0;
 	G();
-	write(fd = creat(f, MODE), h, (int)(c - h));
+	write(fd = creat(filename, MODE), h, (int)(c - h));
 	close(fd);
 	p = j;
 }
@@ -242,7 +243,7 @@ main(int argc, char **argv)
 	noecho();
 	idlok(stdscr, 1);
 
-	if ((fd = open(f = *++argv, 0)) > 0) {
+	if ((fd = open(filename = *++argv, 0)) > 0) {
 		if ((bufptr += read(fd, buffer, BUF)) <= 0)
 			bufptr = buffer;
 		
