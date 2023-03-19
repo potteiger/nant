@@ -252,7 +252,8 @@ main(int argc, char **argv)
 		close(fd);
 	}
 
-	S();
+	//S();
+	p = 0;
 
 	while (!q) {
 		Y();
