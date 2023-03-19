@@ -1,7 +1,12 @@
 #include <ctype.h>
 #include <curses.h>
+
 int d, i, j, m, n, p, q, x, y;
-char *c, b[BUF], *f, *g = b, *h, k[] = "hjklHJKL[]tbixWRQ", *t;
+
+char k[] = "hjklHJKL[]tbixWRQ";
+char b[BUF], *g = b;
+char *c, *f, *h, *t;
+
 char* Z(a)
 {
 	if (a < 0)
