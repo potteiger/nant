@@ -16,8 +16,7 @@ Z(int a)
 }
 
 int
-P(a)
-char* a;
+P(char *a)
 {
 	return a - b - (a < h ? 0 : h - g);
 }
@@ -222,8 +221,7 @@ Y()
 }
 
 int
-main(u, v)
-char** v;
+main(int u, char **v)
 {
 	h = c = b + BUF;
 	if (u < 2)
