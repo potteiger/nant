@@ -11,7 +11,9 @@ char *bufptr = buffer;	/* Buffer location pointer. */
 char *filename;			/* File name. */
 int fd;					/* File descriptor. */
 
-int j, m, n, p, q, x, y;
+int run = 1;			/* Still running? (1=running, 0=quitting) */
+
+int j, m, n, p, x, y;
 
 char k[] = "hjklHJKL[]tbixWRQ";
 char *c, *h, *t;
@@ -45,7 +47,7 @@ bf()
 int
 Q()
 {
-	q = 1;
+	run = 0;
 }
 
 int
@@ -255,7 +257,7 @@ main(int argc, char **argv)
 	//S();
 	p = 0;
 
-	while (!q) {
+	while (run) {
 		Y();
 
 		fd = 0;
