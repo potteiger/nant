@@ -238,8 +238,8 @@ main(int argc, char **argv)
 	idlok(stdscr, 1);
 
 	if ((i = open(f = *++argv, 0)) > 0) {
-		g += read(i, b, BUF);
-		g = g < b ? b : g;
+		if ((g += read(i, b, BUF)) <= 0)
+			g = b;
 		
 		close(i);
 	}
