@@ -236,7 +236,7 @@ main(int argc, char **argv)
 	noecho();
 	idlok(stdscr, 1);
 
-	if (0 < (i = open(f = *++argv, 0))) {
+	if ((i = open(f = *++argv, 0)) > 0) {
 		g += read(i, b, BUF);
 		g = g < b ? b : g;
 		
