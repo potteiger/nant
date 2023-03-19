@@ -224,27 +224,39 @@ int
 main(int argc, char **argv)
 {
 	h = c = b + BUF;
+
 	if (argc < 2)
 		return 2;
+
 	initscr();
+
 	d = LINES;
+
 	raw();
 	noecho();
 	idlok(stdscr, 1);
+
 	if (0 < (i = open(f = *++argv, 0))) {
 		g += read(i, b, BUF);
 		g = g < b ? b : g;
+		
 		close(i);
 	}
+
 	S();
+
 	while (!q) {
 		Y();
+
 		i = 0;
+
 		j = getch();
 		while (k[i] && j - k[i])
 			++i;
+		
 		(*z[i])();
 	}
+
 	endwin();
 	return 0;
 }
