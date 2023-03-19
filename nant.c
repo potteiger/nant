@@ -1,4 +1,6 @@
 #include <ctype.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <curses.h>
 
 int height;				/* Height of screen in lines. */
