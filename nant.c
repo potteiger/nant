@@ -8,40 +8,46 @@ char b[BUF], *g = b;
 char *c, *f, *h, *t;
 
 char *
-Z(a)
+Z(int a)
 {
 	if (a < 0)
 		return b;
 	return b + a + (b + a < g ? 0 : h - g);
 }
 
+int
 P(a)
 char* a;
 {
 	return a - b - (a < h ? 0 : h - g);
 }
 
+int
 S()
 {
 	p = 0;
 }
 
+int
 bf()
 {
 	n = p = P(c);
 }
 
+int
 Q()
 {
 	q = 1;
 }
 
+int
 C()
 {
 	clear();
 	Y();
 }
 
+int
 G()
 {
 	t = Z(p);
@@ -52,6 +58,7 @@ G()
 	p = P(h);
 }
 
+int
 B()
 {
 	while (!isspace(*(t = Z(p))) && b < t)
@@ -60,21 +67,24 @@ B()
 		--p;
 }
 
-M(a)
+int
+M(int a)
 {
 	while (b < (t = Z(--a)) && *t - '\n')
 		;
 	return b < t ? ++a : 0;
 }
 
-N(a)
+int
+N(int a)
 {
 	while ((t = Z(a++)) < c && *t - '\n')
 		;
 	return t < c ? a : P(c);
 }
 
-A(a, j)
+int
+A(int a, int j)
 {
 	i = 0;
 	while ((t = Z(a)) < c && *t - '\n' && i < j) {
@@ -84,37 +94,44 @@ A(a, j)
 	return a;
 }
 
+int
 L()
 {
 	0 < p && --p;
 }
 
+int
 R()
 {
 	p < P(c) && ++p;
 }
 
+int
 U()
 {
 	p = A(M(M(p) - 1), x);
 }
 
+int
 D()
 {
 	p = A(N(p), x);
 }
 
+int
 H()
 {
 	p = M(p);
 }
 
+int
 E()
 {
 	p = N(p);
 	L();
 }
 
+int
 J()
 {
 	m = p = M(n - 1);
@@ -123,6 +140,7 @@ J()
 	n = P(c);
 }
 
+int
 K()
 {
 	j = d;
@@ -130,6 +148,7 @@ K()
 		m = M(m - 1), U();
 }
 
+int
 I()
 {
 	G();
@@ -143,12 +162,14 @@ I()
 	}
 }
 
+int
 X()
 {
 	G();
 	p = h < c ? P(++h) : p;
 }
 
+int
 F()
 {
 	j = p;
@@ -159,6 +180,7 @@ F()
 	p = j;
 }
 
+int
 W()
 {
 	while (!isspace(*(t = Z(p))) && t < c)
@@ -169,6 +191,7 @@ W()
 
 int (*z[])() = { L, D, U, R, B, J, K, W, H, E, S, bf, I, X, F, C, Q, G };
 
+int
 Y()
 {
 	m = p < m ? M(p) : m;
@@ -198,6 +221,7 @@ Y()
 	refresh();
 }
 
+int
 main(u, v)
 char** v;
 {
