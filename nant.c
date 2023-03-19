@@ -221,17 +221,17 @@ Y()
 }
 
 int
-main(int u, char **v)
+main(int argc, char **argv)
 {
 	h = c = b + BUF;
-	if (u < 2)
+	if (argc < 2)
 		return 2;
 	initscr();
 	d = LINES;
 	raw();
 	noecho();
 	idlok(stdscr, 1);
-	if (0 < (i = open(f = *++v, 0))) {
+	if (0 < (i = open(f = *++argv, 0))) {
 		g += read(i, b, BUF);
 		g = g < b ? b : g;
 		close(i);
