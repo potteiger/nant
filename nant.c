@@ -1,7 +1,8 @@
 #include <ctype.h>
 #include <curses.h>
 
-int d, i, j, m, n, p, q, x, y;
+int height;		/* Height of screen in lines. */
+int i, j, m, n, p, q, x, y;
 
 char k[] = "hjklHJKL[]tbixWRQ";
 char b[BUF], *g = b;
@@ -142,7 +143,7 @@ J()
 int
 K()
 {
-	j = d;
+	j = height;
 	while (0 < --j)
 		m = M(m - 1), U();
 }
@@ -196,7 +197,7 @@ Y()
 	m = p < m ? M(p) : m;
 	if (n <= p) {
 		m = N(p);
-		i = m - P(c) ? d : d - 2;
+		i = m - P(c) ? height : height - 2;
 		while (0 < i--)
 			m = M(m - 1);
 	}
@@ -206,7 +207,7 @@ Y()
 	while (1) {
 		p - n || (y = i, x = j);
 		t = Z(n);
-		if (d <= i || c <= t)
+		if (height <= i || c <= t)
 			break;
 		if (*t - '\r')
 			addch(*t), j += *t - '\t' ? 1 : 8 - (j & 7);
@@ -215,7 +216,7 @@ Y()
 		++n;
 	}
 	clrtobot();
-	++i < d&& mvaddstr(i, 0, "<< EOF >>");
+	++i < height && mvaddstr(i, 0, "<< EOF >>");
 	move(y, x);
 	refresh();
 }
@@ -230,7 +231,7 @@ main(int argc, char **argv)
 
 	initscr();
 
-	d = LINES;
+	height = LINES;
 
 	raw();
 	noecho();
