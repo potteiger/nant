@@ -3,13 +3,13 @@
 #include <fcntl.h>
 #include <curses.h>
 
-int height;				/* Height of screen in lines. */
+int height;			/* Height of screen in lines. */
 
 char buffer[BUF];		/* Main buffer. */
-char *bufptr = buffer;	/* Buffer location pointer. */
+char *bufptr = buffer;		/* Buffer location pointer. */
 
 char *filename;			/* File name. */
-int fd;					/* File descriptor. */
+int fd;				/* File descriptor. */
 
 int run = 1;			/* Still running? (1=running, 0=quitting) */
 
@@ -80,8 +80,7 @@ B()
 int
 M(int a)
 {
-	while (buffer < (t = Z(--a)) && *t - '\n')
-		;
+	while (buffer < (t = Z(--a)) && *t - '\n');
 	return buffer < t ? ++a : 0;
 }
 
@@ -204,13 +203,23 @@ int (*z[])() = { L, D, U, R, B, J, K, W, H, E, S, bf, I, X, F, C, Q, G };
 int
 Y()
 {
-	m = p < m ? M(p) : m;
+	/* m = p < m ? M(p) : m; */
+	if (p < m)
+		m = M(p);
+
 	if (n <= p) {
 		m = N(p);
-		fd = m - P(c) ? height : height - 2;
+
+		/* fd = m - P(c) ? height : height - 2;*/
+		if ((m - P(c)) > 0)
+			fd = height;
+		else
+			fd = height - 2;
+
 		while (0 < fd--)
 			m = M(m - 1);
 	}
+
 	move(0, 0);
 	fd = j = 0;
 	n = m;
